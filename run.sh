@@ -14,9 +14,9 @@ go install github.com/k8s-school/ciux@"$ciux_version"
 
 echo "Ignite the project using ciux"
 mkdir -p ~/.ciux
-ciux ignite --selector itest
+ciux ignite --selector itest $DIR
 
-cluster_name=$(ciux get clustername $DIR/..)
+cluster_name=$(ciux get clustername $DIR)
 monitoring=false
 
 # Get kind version from option -k
@@ -33,6 +33,14 @@ ktbx install kubectl
 ktbx install helm
 ink "Create kind cluster"
 ktbx create -s --name $cluster_name
+ink "Install OLM"
+ktbx install olm
 ink "Install ArgoCD operator"
 ktbx install argocd
 
+. $CIUXCONFIG
+
+argocd app create fink --dest-server https://kubernetes.default.svc \
+    --dest-namespace "$CIUX_IMAGE_NAME" \
+    --repo https://github.com/k8s-school/ \
+    --path apps --revision "$STACKABLE_DEMO_WORKBRANCH"

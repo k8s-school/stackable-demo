@@ -1,0 +1,12 @@
+hdfs:
+  enabled: true
+  stackable:
+    operators:
+      - zookeeper
+      - hdfs
+      - commons
+      - secret
+      - listener
+spec:
+  destination:
+    server: https://kubernetes.default.svc
