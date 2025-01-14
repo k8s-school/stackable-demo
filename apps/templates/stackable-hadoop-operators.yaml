@@ -15,7 +15,7 @@ spec:
   source:
     chart: "{{ . }}-operator"
     repoURL: https://repo.stackable.tech/repository/helm-stable/
-    targetRevision: 24.11.0
+    targetRevision: main
     helm:
       releaseName: "{{ . }}-operator"
       valuesObject:
