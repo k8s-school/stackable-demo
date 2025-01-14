@@ -1,3 +1,4 @@
+{{- range $.Values.hdfs.stackable.operators }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -38,3 +39,5 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
       - RespectIgnoreDifferences=true
+---
+{{- end }}

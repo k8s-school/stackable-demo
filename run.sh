@@ -38,9 +38,18 @@ ktbx install olm
 ink "Install ArgoCD operator"
 ktbx install argocd
 
+
+# Run the CD pipeline
 . $CIUXCONFIG
 
-argocd app create fink --dest-server https://kubernetes.default.svc \
-    --dest-namespace "$CIUX_IMAGE_NAME" \
-    --repo https://github.com/k8s-school/ \
+NS=argocd
+
+argocd login --core
+kubectl config set-context --current --namespace="$NS"
+
+APP_NAME="$CIUX_IMAGE_NAME"
+
+argocd app create $APP_NAME --dest-server https://kubernetes.default.svc \
+    --dest-namespace "$APP_NAME" \
+    --repo https://github.com/k8s-school/$APP_NAME \
     --path apps --revision "$STACKABLE_DEMO_WORKBRANCH"
