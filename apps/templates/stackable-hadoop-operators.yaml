@@ -13,8 +13,9 @@ metadata:
 spec:
   project: default
   source:
+    path: deploy/helm
     chart: "{{ . }}-operator"
-    repoURL: https://github.com/stackabletech/{{ . }}-operator/deploy/helm
+    repoURL: https://github.com/stackabletech/{{ . }}-operator.git
     targetRevision: main
     helm:
       releaseName: "{{ . }}-operator"
