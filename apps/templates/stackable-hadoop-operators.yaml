@@ -14,8 +14,8 @@ spec:
   project: default
   source:
     path: deploy/helm/{{ . }}-operator/
-    repoURL: https://github.com/stackabletech/{{ . }}-operator.git
-    targetRevision: main
+    repoURL: https://github.com/k8s-school/{{ . }}-operator.git
+    targetRevision: issue-626/argocd-helm-defaults
     helm:
       releaseName: "{{ . }}-operator"
       valuesObject:
